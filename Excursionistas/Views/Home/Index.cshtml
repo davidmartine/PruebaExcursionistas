@@ -1,0 +1,30 @@
+﻿
+@model Excursionistas.Models.VModels.VMElemento
+
+@{
+    ViewData["Title"] = "Excursionistas";
+}
+
+<h1>Excursionistas</h1>
+
+<form asp-controller="Home" asp-action="CalcularConjunto" method="post">
+    <label for="caloriasMinimas">Calorias Minimas</label>
+    <input class="form-control" type="number" id="caloriasMinimas" name="caloriasMinimas" required />
+
+    <label for="pesoMaximo">Peso Maximo</label>
+    <input class="form-control" type="number" id="pesoMaximo" name="pesoMaximo" required />
+    <br />
+    <input type="submit" value="Calcular Conjunto Optimo" class="btn btn-primary" />
+</form>
+
+@if(Model != null)
+{
+    <h2>Elementos Optimos para escalar risco</h2>
+    <ul>
+        @*mostrar cada elemento del cunjunto en una lista desordenada para mostrar el nombre,peso y calorias*@
+        @foreach (var item in Model.conjuntoOpt)
+        {
+            <li>@item.Nombre - Peso: @item.Peso, Calorías: @item.Calorias</li>
+        }
+    </ul>
+}
